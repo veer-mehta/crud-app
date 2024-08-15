@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>GameData</title>
+
+        <link rel="stylesheet" href={{ url_for(endpoint='static', filename='styles.css') }}>
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Noto Sans'>
+            <script>
+                if (window.history.replaceState)
+                {
+                    window.history.replaceState(null, null, "/");
+                }
+            </script>
+
+    </head>
+    
+    <body style="font-family: Noto Sans;">
+
+        <header>
+            <nav>
+                <h1>Welcome to GameData</h1>
+            </nav>
+        </header>
+        <br>
+        <span>
+
+        </span>
+        <span style="text-align: center; align-self: center;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Game Name</th>
+                        <th>Review</th>
+                        <th>Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    {% for r in tbl %}
+                    <tr>
+                        {% for d in r %}
+                            <td>{{d}}</td>
+                        {%endfor%}
+                    </tr>
+                    {%endfor%}
+                    <tr>
+                        <form method="post">
+                            <td><input type="text" name="game_name" id="game_name" required></td>
+                            <td><input type="text" name="review" id="review"></td>
+                            <td><input type="number"  max="10" min="1" name="rating" id="rating" required></td>
+                            <button type="submit">Submit</button>
+                        </form>
+                    </tr>
+                </tbody>
+            </table>
+        </span>
+    </body>
+</html>

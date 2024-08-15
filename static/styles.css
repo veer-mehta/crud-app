@@ -1,0 +1,62 @@
+/* Global Styles */
+body {
+    background-color: #1c1f2b; /* Dark blue background */
+    color: #f5f5f5; /* Light text for readability */
+    font-family: 'Noto Sans';
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background: #4A6987; /* Darker blue for header */
+    color: #f5f5f5;
+}
+
+nav ul {
+    text-align: right;
+    list-style: none;
+    display: inline-flex;
+    margin: 0;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: #f5f5f5;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #808088;
+}
+
+/* Footer */
+footer {
+    padding: 20px;
+    background: #1c1f2b; /* Same as body background */
+    color: #f5f5f5;
+    text-align: center;
+}
+
+.tag {
+    display: inline-flex;
+    text-align: center;
+    margin: auto 5px; /* Adjust spacing as needed */
+}
+
+h1 {
+
+}
+
+span {
+    display: inline-flex;
+}
+
+form {
+    display: flex;
+}
