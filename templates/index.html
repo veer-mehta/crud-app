@@ -27,7 +27,7 @@
         <span>
 
         </span>
-        <span style="text-align: center; align-self: center;">
+        <span>
             <table>
                 <thead>
                     <tr>
@@ -43,14 +43,19 @@
                         {% for d in r %}
                             <td>{{d}}</td>
                         {%endfor%}
+                        <td>
+                        <form action="{{ url_for('dlt', name=r[0]) }}" method="post">
+                            <button style="background-color: darkred;" type="submit"> - </button>
+                        </form>
+                        </td>
                     </tr>
                     {%endfor%}
                     <tr>
-                        <form method="post">
+                        <form action="{{ url_for('add') }}" method="post">
                             <td><input type="text" name="game_name" id="game_name" required></td>
                             <td><input type="text" name="review" id="review"></td>
                             <td><input type="number"  max="10" min="1" name="rating" id="rating" required></td>
-                            <button type="submit">Submit</button>
+                            <td><button style="background-color: darkcyan;" type="submit"> Add </button></td>
                         </form>
                     </tr>
                 </tbody>

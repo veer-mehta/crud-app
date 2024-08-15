@@ -15,19 +15,24 @@ csr.execute('show tables')
 if tbnm not in [i[0] for i in csr]:
 	csr.execute(f"create table {tbnm}(gameid int not null auto_increment  primary key, name varchar(50) distinct, review varchar(50), rating int)")
 
+@app.route('/<name>', methods = ["POST"])
+def dlt(name):
+	csr.execute(f"delete from {tbnm} where name='{name}'")
+	db.commit()
+	return dsp()	
 
-@app.route('/', methods = ["GET", "POST"])
-def home():
+@app.route('/', methods=["POST"])
+def add():
+	gamenm = request.form["game_name"]
+	review = request.form["review"]
+	rating = request.form["rating"]
 
-	if request.method == "POST":
-		gamenm = request.form["game_name"]
-		review = request.form["review"]
-		rating = request.form["rating"]
+	csr.execute(f"insert into {tbnm} values(0, '{gamenm}', '{review}', {rating})")
+	db.commit()
+	return dsp()
 
-		csr.execute(f"insert into {tbnm} values(0, '{gamenm}', '{review}', {rating})")
-		db.commit()
-
-		flash("done")
+@app.route('/')
+def dsp():
 
 	csr.execute(f"select name, review, rating from {tbnm}")
 
