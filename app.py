@@ -5,6 +5,7 @@ import mysql.connector as mysql
 
 dbnm = "videogames"
 tbnm = "videogamelist"
+edt_row = []
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "sdfklnsdlknrgriofdskfdgsjf"
@@ -15,13 +16,32 @@ csr.execute('show tables')
 if tbnm not in [i[0] for i in csr]:
 	csr.execute(f"create table {tbnm}(gameid int not null auto_increment  primary key, name varchar(50) distinct, review varchar(50), rating int)")
 
-@app.route('/<name>', methods = ["POST"])
-def dlt(name):
-	csr.execute(f"delete from {tbnm} where name='{name}'")
-	db.commit()
-	return dsp()	
 
-@app.route('/', methods=["POST"])
+@app.route('/edit/<rowid>', methods = ["POST"])
+def edt(rowid):
+	edt_row.append(int(rowid))
+	return dsp()
+
+
+@app.route('/save/<rowid>', methods=["POST"])
+def sav(rowid):
+	gamenm = request.form["game_name"]
+	review = request.form["review"]
+	rating = request.form["rating"]
+	edt_row.remove(int(rowid))
+	csr.execute(f"update {tbnm} set name='{gamenm}', review='{review}', rating={rating} where gameid={rowid}")
+	db.commit()
+	return dsp()
+
+
+@app.route('/delete/<rowid>', methods = ["POST"])
+def dlt(rowid):
+	csr.execute(f"delete from {tbnm} where gameid='{rowid}'")
+	db.commit()
+	return dsp()
+
+
+@app.route('/add', methods = ["POST"])
 def add():
 	gamenm = request.form["game_name"]
 	review = request.form["review"]
@@ -33,7 +53,5 @@ def add():
 
 @app.route('/')
 def dsp():
-
-	csr.execute(f"select name, review, rating from {tbnm}")
-
-	return render_template('index.html', tbl=csr)
+	csr.execute(f"select * from {tbnm}")
+	return render_template('index.html', tbl=csr, edt_row=edt_row)

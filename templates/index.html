@@ -16,7 +16,7 @@
 
     </head>
     
-    <body style="font-family: Noto Sans;">
+    <body>
 
         <header>
             <nav>
@@ -31,31 +31,47 @@
             <table>
                 <thead>
                     <tr>
+                        <th>Game No.</th>
                         <th>Game Name</th>
                         <th>Review</th>
                         <th>Rating</th>
                     </tr>
                 </thead>
                 <tbody>
-                    
                     {% for r in tbl %}
-                    <tr>
-                        {% for d in r %}
-                            <td>{{d}}</td>
-                        {%endfor%}
+                    <tr id="tr{{r[0]}}">
+                        {% if r[0] in edt_row %}
+                            <form action="{{ url_for('sav', rowid=r[0]) }}" method="post">
+                                <td>{{r[0]}}</td>
+                                <td><input type="text" name="game_name" id="game_name" value={{r[1]}} required></td>
+                                <td><input type="text" name="review" id="review" value={{r[2]}}></td>
+                                <td><input type="number"  max="10" min="1" name="rating" id="rating" value={{r[3]}} required></td>
+                                <td><button id="btsv{{ r[0] }}" type="submit">save</button></td>
+                            </form>
+                        {% else %}
+                            {% for d in r %}
+                                <td>{{d}}</td>
+                            {% endfor %}
+                            <td>
+                                <form action="{{ url_for('edt', rowid=r[0]) }}" method="post">
+                                    <button id="bted{{ r[0] }}" type="submit">edit</button>
+                                </form>
+                            </td>
+                        {% endif %}
                         <td>
-                        <form action="{{ url_for('dlt', name=r[0]) }}" method="post">
-                            <button style="background-color: darkred;" type="submit"> - </button>
-                        </form>
+                            <form action="{{ url_for('dlt', rowid=r[0]) }}" method="post">
+                                <button type="submit">delete</button>
+                            </form>
                         </td>
                     </tr>
                     {%endfor%}
                     <tr>
                         <form action="{{ url_for('add') }}" method="post">
+                            <td></td>
                             <td><input type="text" name="game_name" id="game_name" required></td>
                             <td><input type="text" name="review" id="review"></td>
                             <td><input type="number"  max="10" min="1" name="rating" id="rating" required></td>
-                            <td><button style="background-color: darkcyan;" type="submit"> Add </button></td>
+                            <td><button type="submit">add</button></td>
                         </form>
                     </tr>
                 </tbody>

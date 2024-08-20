@@ -1,44 +1,65 @@
-/* Global Styles */
+/* Base styles */
 body {
-    background-color: #1c1f2b; /* Dark blue background */
-    color: #f5f5f5; /* Light text for readability */
-    font-family: 'Noto Sans';
+    background-color: #121212;
+    color: #e0e0e0;
+	font-family: "Noto Sans";
+	margin: 0;
+    padding: 0;
 }
 
-/* Header */
-header {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    background: #4A6987; /* Darker blue for header */
-    color: #f5f5f5;
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    color: #ffffff;
 }
 
-nav ul {
-    text-align: right;
-    list-style: none;
-    display: inline-flex;
-    margin: 0;
-}
-
-nav ul li {
-    margin-left: 20px;
-}
-
-nav ul li a {
-    color: #f5f5f5;
+/* Links */
+a {
+    color: #bb86fc;
     text-decoration: none;
-    transition: color 0.3s ease;
 }
 
-nav ul li a:hover {
-    color: #808088;
+a:hover {
+    color: #3700b3;
 }
 
-/* Footer */
-footer {
-    padding: 20px;
-    background: #1c1f2b; /* Same as body background */
-    color: #f5f5f5;
-    text-align: center;
+/* Buttons */
+button {
+    background-color: #333333;
+    color: #e0e0e0;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #444444;
+}
+
+/* Inputs and Textareas */
+input, textarea {
+    background-color: #333333;
+    color: #e0e0e0;
+    border: 1px solid #444444;
+    padding: 10px;
+}
+
+input::placeholder, textarea::placeholder {
+    color: #888888;
+}
+
+
+/* Navbar */
+nav {
+    background-color: #1f1f1f;
+    padding: 10px 20px;
+}
+
+nav a {
+    color: #e0e0e0;
+    text-decoration: none;
+    margin: 0 15px;
+}
+
+nav a:hover {
+    color: #bb86fc;
 }
