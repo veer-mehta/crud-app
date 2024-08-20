@@ -6,9 +6,9 @@ tbnm = "videogamelist"
 edt_row = []
 
 app = Flask(__name__)
-app.config["SECRET_KEY"] = "sdfklnsdlknrgriofdskfdgsjf"
+app.config["SECRET_KEY"] = "SECRET_KEY"
 
-db = mysql.connect(host="localhost", user="root", password="Vam#090905", database=dbnm)
+db = mysql.connect(host="yourhostname", user="yourusername", password="yourpassword", database=dbnm)
 csr = db.cursor(buffered = True)
 csr.execute('show tables')
 if tbnm not in [i[0] for i in csr]:
