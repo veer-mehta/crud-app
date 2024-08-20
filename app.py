@@ -1,5 +1,3 @@
-#videogame vault
-
 from flask import Flask, render_template, request, flash, url_for
 import mysql.connector as mysql
 
